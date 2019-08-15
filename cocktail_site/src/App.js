@@ -1,26 +1,48 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+// redux
+import { connect } from 'react-redux';
+import { titleFX, setQueryType, setQuery } from './actions'
+
+// local imports
+import Header from './components/Header/Header'
+import Results from './components/Results/Results'
+import List from './components/List/List'
+
+function App(props) {
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <Header
+          title={props.titleOnProps}
+          changeTitle={props.titleFX}
+          setQuery={props.setQuery}
+          setQueryType={props.setQueryType}
+          query={props.query}
+          queryType={props.queryType}/>
+        <Results />
+      </div>
+      <List />
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  console.log('state', state)
+  return {
+    titleOnProps: state.title,
+    queryType: state.queryType,
+    query: state.query
+  }
+}
+
+const ConnectedApp = connect(
+  mapStateToProps,
+  { titleFX, setQueryType, setQuery }
+)(App)
+
+export default ConnectedApp;
