@@ -3,7 +3,7 @@ import './App.css';
 
 // redux
 import { connect } from 'react-redux';
-import { titleFX, setQueryType, setQuery } from './actions'
+import { titleFX, setQueryType, setQuery, getData } from './actions'
 
 // local imports
 import Header from './components/Header/Header'
@@ -24,7 +24,9 @@ function App(props) {
           setQueryType={props.setQueryType}
           query={props.query}
           queryType={props.queryType}/>
-        <Results />
+        <Results
+          getData={props.getData}
+          random={props.random}/>
       </div>
       <List />
     </div>
@@ -36,13 +38,16 @@ const mapStateToProps = state => {
   return {
     titleOnProps: state.title,
     queryType: state.queryType,
-    query: state.query
+    query: state.query,
+    error: state.error,
+    random: state.random,
+    isLoading: state.isLoading
   }
 }
 
 const ConnectedApp = connect(
   mapStateToProps,
-  { titleFX, setQueryType, setQuery }
+  { titleFX, setQueryType, setQuery, getData }
 )(App)
 
 export default ConnectedApp;

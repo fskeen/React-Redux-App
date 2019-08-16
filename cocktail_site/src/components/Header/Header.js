@@ -2,14 +2,12 @@ import React from 'react'
 
 function Header (props) {
 
-    const query = {
-
-    }
-
     return (
         <div>
-            <h1>{props.title}</h1>
-            <button onClick={() => props.changeTitle()}>New title</button>
+            {/*<h1>{props.title}</h1>
+    <button onClick={() => props.changeTitle()}>New title</button>*/}
+
+            
             <form onSubmit={() => props.setQueryType(props.querytype)}>
                 <label htmlFor="searchBy" >Search cocktails by </label>
                 <select
@@ -22,18 +20,19 @@ function Header (props) {
                     <option>Type</option>
                     <option>Glass</option>
                 </select>
-                {console.log(props.querytype)}
-                {props.querytype === "Name" ?
+
+                {console.log(props.queryType)}
+                {props.queryType === "Name" ?
                     <input
                         type="text"
                         name="name"
                         placeholder="Enter name of cocktail"/> :
-                props.querytype === "Ingredient" ?   
+                props.queryType === "Ingredient" ?   
                     <input
                         type="text"
                         name="ingredient"
                         placeholder="Enter ingredient"/> :
-                props.querytype === "Type" ?
+                props.queryType === "Type" ?
                     <select
                         name="type">
                     <option>type a</option>

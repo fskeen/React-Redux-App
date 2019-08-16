@@ -1,7 +1,10 @@
 const initialState = {
     title: "Hmmm, I need a new title.",
-    queryType: "",
-    query: ""
+    queryType: "Name",
+    query: "",
+    isLoading: false,
+    error: '',
+    random: {}
 }
 
 export const reducer = (state = initialState, action) => {
@@ -21,6 +24,22 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 query: action.payload
             }
+            
+        case 'FETCH_RANDOM_START':
+            return {
+                ...state,
+                isLoading: true,
+                error: ''
+            }
+        case 'FETCH_RANDOM_SUCCESS':
+            return {
+                ...state,
+                isLoading: false,
+                error: '',
+                random: action.payload.drinks[0]
+
+            }
+
         default:
             return state;
     }

@@ -1,8 +1,13 @@
 import React from 'react'
 
-function Results () {
+function Results (props) {
     return (
-        <h3>The results go here.</h3>
+        <div>
+            <button onClick={() => props.getData()}>Random cocktail</button>
+            {props.random && !props.isLoading && <h3>{props.random.strDrink}</h3>}
+        </div>
+
+
     )
 }
 
